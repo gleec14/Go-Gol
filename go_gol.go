@@ -86,7 +86,6 @@ func initGameVars(fptr io.Reader) (board1, board2 [][]string, iterations int){
         if err != nil {
             log.Fatal("File Format error")
         }
-        fmt.Printf("row %d, col %d\n", row, col)
         setAlive(true, board1, row, col)
      }
 
@@ -138,11 +137,13 @@ func updateCell(mod, orig [][]string, row, col int) {
         if aliveNeighbors < 2 || aliveNeighbors > 3 {
             mod[row][col] = DEADCHR
         } else {
-            mod[row][col] = orig[row][col]
+            mod[row][col] = ALIVECHR
         }
     } else {
         if aliveNeighbors == 3 {
             mod[row][col] = ALIVECHR
+        } else {
+            mod[row][col] = DEADCHR
         }
     }
 }
